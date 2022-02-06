@@ -7,6 +7,6 @@ import javax.inject.Inject
 class SignMetadataRepositoryImpl @Inject constructor(
     private val signMetadataDb: SignMetadataDatabase
 ) : SignMetadataRepository {
-    override suspend fun getAllSignMetaData(): List<SignMetadata> =
+    override suspend fun getAllSignMetadata(): List<SignMetadata> =
         signMetadataDb.signMetaDataDao().getAll()
 }

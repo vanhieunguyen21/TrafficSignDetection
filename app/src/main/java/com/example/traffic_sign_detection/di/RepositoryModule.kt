@@ -1,6 +1,9 @@
 package com.example.traffic_sign_detection.di
 
+import com.example.traffic_sign_detection.data.datasource.MediaStoreImageDatasource
 import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
+import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepository
+import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepositoryImpl
 import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
 import com.example.traffic_sign_detection.data.repository.SignMetadataRepositoryImpl
 import dagger.Module
@@ -17,5 +20,11 @@ object RepositoryModule {
     @Provides
     fun provideMetaDataRepository(signMetadataDatabase: SignMetadataDatabase): SignMetadataRepository {
         return SignMetadataRepositoryImpl(signMetadataDatabase)
+    }
+
+    @Singleton
+    @Provides
+    fun provideMediaStoreImageRepository(datasource: MediaStoreImageDatasource): MediaStoreImageRepository {
+        return MediaStoreImageRepositoryImpl(datasource)
     }
 }

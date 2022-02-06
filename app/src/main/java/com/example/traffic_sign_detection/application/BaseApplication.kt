@@ -6,6 +6,7 @@ import androidx.camera.camera2.Camera2Config
 import androidx.camera.core.CameraXConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepository
 import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
 import com.example.traffic_sign_detection.enumeration.LoadDataState
 import dagger.hilt.android.HiltAndroidApp
@@ -19,11 +20,13 @@ import javax.inject.Inject
 @HiltAndroidApp
 class BaseApplication : Application(), CameraXConfig.Provider {
     companion object {
-        private const val TAG = "MyApplication"
+        private const val TAG = "BaseApplication"
     }
 
     @Inject
     lateinit var signSignMetadataRepository: SignMetadataRepository
+    @Inject
+    lateinit var mediaStoreImageRepository: MediaStoreImageRepository
     private val _loadMetaDataState = MutableLiveData(LoadDataState.NONE)
     val loadMetaDataState: LiveData<LoadDataState> get() = _loadMetaDataState
 
@@ -37,7 +40,7 @@ class BaseApplication : Application(), CameraXConfig.Provider {
         applicationScope.launch {
             _loadMetaDataState.value = LoadDataState.LOADING
             try {
-                val metaDataList = signSignMetadataRepository.getAllSignMetaData()
+                val metaDataList = signSignMetadataRepository.getAllSignMetadata()
                 metaDataList.iterator().forEach {
                     GlobalData.metaDataMap[it.id] = it
                 }
@@ -47,6 +50,11 @@ class BaseApplication : Application(), CameraXConfig.Provider {
                 Log.e(TAG, "Error loading sign meta data", e)
                 _loadMetaDataState.value = LoadDataState.ERROR
             }
+        }
+
+        applicationScope.launch {
+            val images = mediaStoreImageRepository.getAllImages()
+            Log.d(TAG, "images ${images[0].name}")
         }
     }
 
