@@ -15,4 +15,4 @@ class Prediction(
     name: String,
     drawable: String,
     description: String?
-) : SignMetaData(id, label, name, drawable, description)
+) : SignMetadata(id, label, name, drawable, description)

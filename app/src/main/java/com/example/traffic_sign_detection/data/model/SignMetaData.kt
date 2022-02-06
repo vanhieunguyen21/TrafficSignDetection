@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity
-open class SignMetaData(
+open class SignMetadata(
     @PrimaryKey val id: Int,
     @ColumnInfo(name = "label") val label: String,
     @ColumnInfo(name = "name") val name: String,

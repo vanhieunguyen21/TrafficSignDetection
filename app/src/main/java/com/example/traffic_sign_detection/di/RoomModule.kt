@@ -2,7 +2,7 @@ package com.example.traffic_sign_detection.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.traffic_sign_detection.data.database.MetaDataDatabase
+import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,9 +16,9 @@ object RoomModule {
 
     @Singleton
     @Provides
-    fun provideSignMetaDataDatabase(@ApplicationContext app : Context) : MetaDataDatabase{
+    fun provideSignMetaDataDatabase(@ApplicationContext app : Context) : SignMetadataDatabase{
         return Room.databaseBuilder(
-            app, MetaDataDatabase::class.java, "SignMetaData"
+            app, SignMetadataDatabase::class.java, "SignMetaData"
         ).createFromAsset("SignMetaData.db").build()
     }
 }

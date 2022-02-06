@@ -1,8 +1,8 @@
 package com.example.traffic_sign_detection.di
 
-import com.example.traffic_sign_detection.data.database.MetaDataDatabase
-import com.example.traffic_sign_detection.data.repository.MetaDataRepository
-import com.example.traffic_sign_detection.data.repository.MetaDataRepositoryImpl
+import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
+import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
+import com.example.traffic_sign_detection.data.repository.SignMetadataRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -15,7 +15,7 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideMetaDataRepository(metaDataDatabase: MetaDataDatabase): MetaDataRepository {
-        return MetaDataRepositoryImpl(metaDataDatabase)
+    fun provideMetaDataRepository(signMetadataDatabase: SignMetadataDatabase): SignMetadataRepository {
+        return SignMetadataRepositoryImpl(signMetadataDatabase)
     }
 }

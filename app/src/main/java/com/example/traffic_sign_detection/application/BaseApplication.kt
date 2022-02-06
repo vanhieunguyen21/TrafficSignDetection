@@ -6,7 +6,7 @@ import androidx.camera.camera2.Camera2Config
 import androidx.camera.core.CameraXConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.traffic_sign_detection.data.repository.MetaDataRepository
+import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
 import com.example.traffic_sign_detection.enumeration.LoadDataState
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
@@ -23,7 +23,7 @@ class BaseApplication : Application(), CameraXConfig.Provider {
     }
 
     @Inject
-    lateinit var signMetaDataRepository: MetaDataRepository
+    lateinit var signSignMetadataRepository: SignMetadataRepository
     private val _loadMetaDataState = MutableLiveData(LoadDataState.NONE)
     val loadMetaDataState: LiveData<LoadDataState> get() = _loadMetaDataState
 
@@ -37,7 +37,7 @@ class BaseApplication : Application(), CameraXConfig.Provider {
         applicationScope.launch {
             _loadMetaDataState.value = LoadDataState.LOADING
             try {
-                val metaDataList = signMetaDataRepository.getAllSignMetaData()
+                val metaDataList = signSignMetadataRepository.getAllSignMetaData()
                 metaDataList.iterator().forEach {
                     GlobalData.metaDataMap[it.id] = it
                 }

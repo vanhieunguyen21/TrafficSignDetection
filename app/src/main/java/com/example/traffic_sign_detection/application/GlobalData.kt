@@ -1,8 +1,8 @@
 package com.example.traffic_sign_detection.application
 
-import com.example.traffic_sign_detection.data.model.SignMetaData
+import com.example.traffic_sign_detection.data.model.SignMetadata
 
 object GlobalData {
-    val metaDataMap = HashMap<Int, SignMetaData>()
+    val metaDataMap = HashMap<Int, SignMetadata>()
 
 }
