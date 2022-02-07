@@ -54,7 +54,7 @@ class BaseApplication : Application(), CameraXConfig.Provider {
 
         applicationScope.launch {
             val images = mediaStoreImageRepository.getAllImages()
-            Log.d(TAG, "images ${images[0].name}")
+            Log.d(TAG, "images ${images[0].width} ${images[0].height}")
         }
     }
 
