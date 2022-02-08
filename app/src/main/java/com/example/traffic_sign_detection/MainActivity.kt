@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.example.traffic_sign_detection.presentation.ui.camera.CameraFragment
+import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -33,7 +34,8 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-        addFragment(CameraFragment(), "CameraFragment", false)
+//        addFragment(CameraFragment(), "CameraFragment", false)
+        addFragment(GalleryFragment(), "GalleryFragment", false)
 //        val classifier = TFLiteClassifier(this)
 //        val image1 = BitmapFactory.decodeResource(resources, R.drawable.image0)
 //        classifier.predict(image1)

@@ -10,20 +10,17 @@ data class GalleryImage(
     val id: Long,
     val uri: Uri,
     val name: String,
-    val date: Long,
+    val addedTimestamp: Long,
     val size: Long,
-    val width: Long?,
-    val height: Long?,
-
-    // For API < 29 {
-    val data: String?,
-    // For API < 29 }
-
-    // For API >= 29 {
-    val relativePath: String?,
-    // For API >= 29 }
+    val width: Long,
+    val height: Long,
+    val bucketId: Long,
+    val bucketName: String,
+    val volumeName: String
 ) : GalleryItem
 
 data class GalleryTitle(
-    val title: String
+    val bucketId: Long,
+    val bucketName: String,
+    val volumeName: String,
 ) : GalleryItem

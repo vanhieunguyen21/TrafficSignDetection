@@ -51,11 +51,6 @@ class BaseApplication : Application(), CameraXConfig.Provider {
                 _loadMetaDataState.value = LoadDataState.ERROR
             }
         }
-
-        applicationScope.launch {
-            val images = mediaStoreImageRepository.getAllImages()
-            Log.d(TAG, "images ${images[0].width} ${images[0].height}")
-        }
     }
 
     override fun getCameraXConfig(): CameraXConfig {

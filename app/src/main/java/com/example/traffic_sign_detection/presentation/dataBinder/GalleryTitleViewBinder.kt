@@ -15,7 +15,7 @@ class GalleryTitleViewBinder(mDataBindAdapter: DataBindAdapter<GalleryItem>) :
     class GalleryTitleViewHolder(private val itemBinding: ItemGalleryTitleBinding) :
         RecyclerView.ViewHolder(itemBinding.root) {
         fun bind(title: GalleryTitle) {
-            itemBinding.title.text = title.title
+            itemBinding.title.text = title.bucketName
         }
     }
 

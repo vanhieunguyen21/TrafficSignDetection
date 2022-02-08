@@ -6,14 +6,16 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import com.example.traffic_sign_detection.application.BaseApplication
+import android.util.Log
 import com.example.traffic_sign_detection.data.model.GalleryImage
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
 
 class MediaStoreImageDatasourceImpl(
     val app: Context
 ) : MediaStoreImageDatasource {
+
+    companion object {
+        private const val TAG = "MediaStoreImageDatasourceImpl"
+    }
 
     @SuppressLint("InlinedApi")
     override suspend fun getAllImages(): List<GalleryImage> {
@@ -30,12 +32,10 @@ class MediaStoreImageDatasourceImpl(
             MediaStore.Images.Media.SIZE,
             MediaStore.Images.Media.WIDTH,
             MediaStore.Images.Media.HEIGHT,
+            MediaStore.Images.Media.BUCKET_ID,
+            MediaStore.Images.Media.BUCKET_DISPLAY_NAME,
+            MediaStore.Images.Media.VOLUME_NAME,
         )
-        if (belowQ) {
-            projection.add(MediaStore.Images.Media.DATA)
-        } else {
-            projection.add(MediaStore.Images.Media.RELATIVE_PATH)
-        }
 
         val selection = null
         val selectionArgs = null
@@ -55,10 +55,10 @@ class MediaStoreImageDatasourceImpl(
             val sizeColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.SIZE)
             val widthColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.WIDTH)
             val heightColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.HEIGHT)
-            val dataColumn =
-                if (belowQ) cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA) else null
-            val pathColumn =
-                if (belowQ) null else cursor.getColumnIndexOrThrow(MediaStore.Images.Media.RELATIVE_PATH)
+            val bucketIdColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_ID)
+            val bucketNameColumn =
+                cursor.getColumnIndexOrThrow(MediaStore.Images.Media.BUCKET_DISPLAY_NAME)
+            val volumeNameColumn = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.VOLUME_NAME)
 
             while (cursor.moveToNext()) {
                 val id = cursor.getLong(idColumn)
@@ -67,15 +67,18 @@ class MediaStoreImageDatasourceImpl(
                 val size = cursor.getLong(sizeColumn)
                 val width = cursor.getLong(widthColumn)
                 val height = cursor.getLong(heightColumn)
-                val data = if (belowQ) cursor.getString(dataColumn!!) else null
-                val path = if (belowQ) null else cursor.getString(pathColumn!!)
+                val bucketId = cursor.getLong(bucketIdColumn)
+                var bucketName = cursor.getString(bucketNameColumn)
+                val volumeName = cursor.getString(volumeNameColumn)
 
                 val contentUri: Uri = ContentUris.withAppendedId(
                     MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
                     id
                 )
 
-                images += if (belowQ) GalleryImage(
+                if (bucketName == null) bucketName = ""
+
+                images += GalleryImage(
                     id,
                     contentUri,
                     name,
@@ -83,18 +86,9 @@ class MediaStoreImageDatasourceImpl(
                     size,
                     width,
                     height,
-                    data = data,
-                    relativePath = null
-                ) else GalleryImage(
-                    id,
-                    contentUri,
-                    name,
-                    date,
-                    size,
-                    width,
-                    height,
-                    data = null,
-                    relativePath = path
+                    bucketId,
+                    bucketName,
+                    volumeName,
                 )
             }
         }
