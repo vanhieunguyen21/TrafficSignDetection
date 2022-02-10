@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.dataBinder
+package com.example.traffic_sign_detection.presentation.recyclerViewBinder
 
 import android.view.ViewGroup
 import com.example.traffic_sign_detection.domain.data.model.GalleryItem

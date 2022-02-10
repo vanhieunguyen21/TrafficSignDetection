@@ -3,6 +3,7 @@ package com.example.traffic_sign_detection.domain.data.model
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity
 open class SignMetadata(
@@ -11,4 +12,4 @@ open class SignMetadata(
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "drawable") val drawable: String,
     @ColumnInfo(name = "description") val description: String?
-)
+) : Serializable

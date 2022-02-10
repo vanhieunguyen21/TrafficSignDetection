@@ -9,6 +9,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.traffic_sign_detection.domain.data.model.ClassificationResult
 import com.example.traffic_sign_detection.databinding.FragmentResultBinding
+import com.example.traffic_sign_detection.presentation.MainActivity
+import com.example.traffic_sign_detection.presentation.ui.detail.SignDetailFragment
 import com.google.android.flexbox.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,8 +23,10 @@ class ResultFragment : Fragment() {
 
     private lateinit var binding: FragmentResultBinding
     private lateinit var viewModel: ResultViewModel
+
     @Inject
     lateinit var resultViewModelFactory: ResultViewModel.ResultViewModelFactory
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -69,6 +73,21 @@ class ResultFragment : Fragment() {
         }
         binding.resultRecyclerView.layoutManager = layoutManager
         binding.resultRecyclerView.adapter = viewModel.adapter
+
+        // Listen to user selection on sign
+        viewModel.selectedSign.observe(viewLifecycleOwner) { signMetadata ->
+            if (signMetadata == null) {
+                return@observe
+            }
+            val mainActivity: MainActivity = requireActivity() as MainActivity
+            val signDetailFragment = SignDetailFragment()
+            val sArgs = Bundle()
+            sArgs.putSerializable("signMetadata", signMetadata)
+            signDetailFragment.arguments = sArgs
+            mainActivity.addFragment(signDetailFragment, "SignDetailFragment", true)
+            // Remove value to prevent recall on fragment recreation
+            viewModel.setSelectedSign(null)
+        }
     }
 
     override fun onDestroy() {

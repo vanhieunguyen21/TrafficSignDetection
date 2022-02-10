@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.dataBinder
+package com.example.traffic_sign_detection.presentation.recyclerViewBinder
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

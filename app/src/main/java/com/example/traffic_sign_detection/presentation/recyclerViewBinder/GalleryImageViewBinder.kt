@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.dataBinder
+package com.example.traffic_sign_detection.presentation.recyclerViewBinder
 
 import android.graphics.Bitmap
 import android.os.Build
