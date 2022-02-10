@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.data.model
+package com.example.traffic_sign_detection.domain.data.model
 
 import android.graphics.Bitmap
 import java.io.Serializable

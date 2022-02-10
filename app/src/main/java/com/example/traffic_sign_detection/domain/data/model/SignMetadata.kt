@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.data.model
+package com.example.traffic_sign_detection.domain.data.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

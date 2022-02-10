@@ -1,8 +1,8 @@
-package com.example.traffic_sign_detection.data.dao
+package com.example.traffic_sign_detection.domain.data.dao
 
 import androidx.room.Dao
 import androidx.room.Query
-import com.example.traffic_sign_detection.data.model.SignMetadata
+import com.example.traffic_sign_detection.domain.data.model.SignMetadata
 
 @Dao
 interface SignMetadataDao {

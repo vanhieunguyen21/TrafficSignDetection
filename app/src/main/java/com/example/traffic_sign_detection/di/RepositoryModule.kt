@@ -1,11 +1,11 @@
 package com.example.traffic_sign_detection.di
 
-import com.example.traffic_sign_detection.data.datasource.MediaStoreImageDatasource
-import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
-import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepository
-import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepositoryImpl
-import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
-import com.example.traffic_sign_detection.data.repository.SignMetadataRepositoryImpl
+import com.example.traffic_sign_detection.domain.data.datasource.MediaStoreImageDatasource
+import com.example.traffic_sign_detection.domain.data.datasource.SignMetadataDatabase
+import com.example.traffic_sign_detection.domain.data.repository.MediaStoreImageRepository
+import com.example.traffic_sign_detection.domain.data.repository.MediaStoreImageRepositoryImpl
+import com.example.traffic_sign_detection.domain.data.repository.SignMetadataRepository
+import com.example.traffic_sign_detection.domain.data.repository.SignMetadataRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.data.datasource
+package com.example.traffic_sign_detection.domain.data.datasource
 
 import android.annotation.SuppressLint
 import android.content.ContentUris
@@ -6,8 +6,7 @@ import android.content.Context
 import android.net.Uri
 import android.os.Build
 import android.provider.MediaStore
-import android.util.Log
-import com.example.traffic_sign_detection.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
 
 class MediaStoreImageDatasourceImpl(
     val app: Context

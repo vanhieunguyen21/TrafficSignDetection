@@ -14,7 +14,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:name=".application.BaseApplication"
+        android:name="com.example.traffic_sign_detection.domain.application.BaseApplication"
         android:theme="@style/Theme.TrafficSignDetection">
         <activity
             android:name=".presentation.MainActivity"

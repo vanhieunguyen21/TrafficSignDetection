@@ -2,7 +2,7 @@ package com.example.traffic_sign_detection.presentation.dataBinder
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traffic_sign_detection.data.model.GalleryItem
+import com.example.traffic_sign_detection.domain.data.model.GalleryItem
 
 abstract class DataBindAdapter<T> : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

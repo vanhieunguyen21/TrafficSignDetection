@@ -1,7 +1,7 @@
-package com.example.traffic_sign_detection.data.repository
+package com.example.traffic_sign_detection.domain.data.repository
 
-import com.example.traffic_sign_detection.data.datasource.MediaStoreImageDatasource
-import com.example.traffic_sign_detection.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.datasource.MediaStoreImageDatasource
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
 import javax.inject.Inject
 
 class MediaStoreImageRepositoryImpl @Inject constructor(

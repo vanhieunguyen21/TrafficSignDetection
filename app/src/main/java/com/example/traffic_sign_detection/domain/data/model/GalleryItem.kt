@@ -1,8 +1,6 @@
-package com.example.traffic_sign_detection.data.model
+package com.example.traffic_sign_detection.domain.data.model
 
 import android.net.Uri
-import android.os.Build
-import androidx.annotation.RequiresApi
 import java.io.Serializable
 
 interface GalleryItem

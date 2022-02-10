@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.traffic_sign_detection.application.GlobalData
-import com.example.traffic_sign_detection.data.model.GalleryImage
-import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepository
+import com.example.traffic_sign_detection.domain.application.GlobalData
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.repository.MediaStoreImageRepository
 import com.example.traffic_sign_detection.presentation.adapter.GalleryRecyclerViewAdapter
 import com.example.traffic_sign_detection.util.GalleryUtil
 import dagger.hilt.android.lifecycle.HiltViewModel

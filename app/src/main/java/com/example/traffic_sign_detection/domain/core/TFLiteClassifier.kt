@@ -1,12 +1,11 @@
-package com.example.traffic_sign_detection.core
+package com.example.traffic_sign_detection.domain.core
 
 import android.content.Context
 import android.graphics.Bitmap
 import android.util.Log
-import android.widget.Toast
-import com.example.traffic_sign_detection.application.GlobalData
-import com.example.traffic_sign_detection.data.model.ClassificationResult
-import com.example.traffic_sign_detection.data.model.Prediction
+import com.example.traffic_sign_detection.domain.application.GlobalData
+import com.example.traffic_sign_detection.domain.data.model.ClassificationResult
+import com.example.traffic_sign_detection.domain.data.model.Prediction
 import com.example.traffic_sign_detection.ml.Cp10Loss005h5
 import org.tensorflow.lite.DataType
 import org.tensorflow.lite.support.tensorbuffer.TensorBuffer

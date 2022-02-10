@@ -7,7 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
-import com.example.traffic_sign_detection.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
 import com.example.traffic_sign_detection.databinding.FragmentCropImageBinding
 
 class CropImageFragment : Fragment() {

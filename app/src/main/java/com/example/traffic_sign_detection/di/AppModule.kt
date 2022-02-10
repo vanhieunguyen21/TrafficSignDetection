@@ -1,8 +1,8 @@
 package com.example.traffic_sign_detection.di
 
 import android.content.Context
-import com.example.traffic_sign_detection.application.BaseApplication
-import com.example.traffic_sign_detection.core.TFLiteClassifier
+import com.example.traffic_sign_detection.domain.application.BaseApplication
+import com.example.traffic_sign_detection.domain.core.TFLiteClassifier
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -1,8 +1,8 @@
 package com.example.traffic_sign_detection.util
 
-import com.example.traffic_sign_detection.data.model.GalleryImage
-import com.example.traffic_sign_detection.data.model.GalleryItem
-import com.example.traffic_sign_detection.data.model.GalleryTitle
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.model.GalleryItem
+import com.example.traffic_sign_detection.domain.data.model.GalleryTitle
 
 object GalleryUtil {
     private data class Bucket(

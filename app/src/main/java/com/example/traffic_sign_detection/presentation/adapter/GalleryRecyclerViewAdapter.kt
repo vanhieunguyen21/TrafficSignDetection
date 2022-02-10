@@ -1,17 +1,13 @@
 package com.example.traffic_sign_detection.presentation.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traffic_sign_detection.data.model.GalleryImage
-import com.example.traffic_sign_detection.data.model.GalleryItem
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.model.GalleryItem
 import com.example.traffic_sign_detection.presentation.dataBinder.DataBindAdapter
 import com.example.traffic_sign_detection.presentation.dataBinder.DataBinder
 import com.example.traffic_sign_detection.presentation.dataBinder.GalleryImageViewBinder
 import com.example.traffic_sign_detection.presentation.dataBinder.GalleryTitleViewBinder
 import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryViewModel
-import com.example.traffic_sign_detection.util.GalleryUtil
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 
 class GalleryRecyclerViewAdapter(
     val viewModel: GalleryViewModel

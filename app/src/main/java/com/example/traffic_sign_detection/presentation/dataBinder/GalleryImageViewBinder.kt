@@ -7,8 +7,8 @@ import android.util.Size
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.traffic_sign_detection.data.model.GalleryImage
-import com.example.traffic_sign_detection.data.model.GalleryItem
+import com.example.traffic_sign_detection.domain.data.model.GalleryImage
+import com.example.traffic_sign_detection.domain.data.model.GalleryItem
 import com.example.traffic_sign_detection.databinding.ItemGalleryImageBinding
 import com.example.traffic_sign_detection.presentation.adapter.GalleryRecyclerViewAdapter
 import com.squareup.picasso.Picasso

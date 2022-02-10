@@ -1,7 +1,7 @@
-package com.example.traffic_sign_detection.data.repository
+package com.example.traffic_sign_detection.domain.data.repository
 
-import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
-import com.example.traffic_sign_detection.data.model.SignMetadata
+import com.example.traffic_sign_detection.domain.data.datasource.SignMetadataDatabase
+import com.example.traffic_sign_detection.domain.data.model.SignMetadata
 import javax.inject.Inject
 
 class SignMetadataRepositoryImpl @Inject constructor(

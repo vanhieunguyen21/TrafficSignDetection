@@ -1,6 +1,6 @@
 package com.example.traffic_sign_detection.util
 
-import com.example.traffic_sign_detection.data.model.Prediction
+import com.example.traffic_sign_detection.domain.data.model.Prediction
 
 object ClassificationResultUtil {
     fun filterHighAccuracyPrediction(predictions: List<Prediction>): List<Prediction> =

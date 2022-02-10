@@ -19,7 +19,7 @@ import androidx.fragment.app.viewModels
 import com.example.traffic_sign_detection.presentation.MainActivity
 import com.example.traffic_sign_detection.R
 import com.example.traffic_sign_detection.databinding.FragmentCameraBinding
-import com.example.traffic_sign_detection.enumeration.LoadDataState
+import com.example.traffic_sign_detection.domain.enumeration.LoadDataState
 import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryFragment
 import com.example.traffic_sign_detection.presentation.ui.result.ResultFragment
 import dagger.hilt.android.AndroidEntryPoint

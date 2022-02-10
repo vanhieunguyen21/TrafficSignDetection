@@ -2,7 +2,7 @@ package com.example.traffic_sign_detection.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.traffic_sign_detection.data.datasource.SignMetadataDatabase
+import com.example.traffic_sign_detection.domain.data.datasource.SignMetadataDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

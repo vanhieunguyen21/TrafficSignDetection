@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.application
+package com.example.traffic_sign_detection.domain.application
 
 import android.app.Application
 import android.util.Log
@@ -6,9 +6,9 @@ import androidx.camera.camera2.Camera2Config
 import androidx.camera.core.CameraXConfig
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.example.traffic_sign_detection.data.repository.MediaStoreImageRepository
-import com.example.traffic_sign_detection.data.repository.SignMetadataRepository
-import com.example.traffic_sign_detection.enumeration.LoadDataState
+import com.example.traffic_sign_detection.domain.data.repository.MediaStoreImageRepository
+import com.example.traffic_sign_detection.domain.data.repository.SignMetadataRepository
+import com.example.traffic_sign_detection.domain.enumeration.LoadDataState
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

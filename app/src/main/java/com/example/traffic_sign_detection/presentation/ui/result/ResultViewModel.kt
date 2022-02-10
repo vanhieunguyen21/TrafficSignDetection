@@ -3,7 +3,7 @@ package com.example.traffic_sign_detection.presentation.ui.result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.traffic_sign_detection.presentation.adapter.ResultRecyclerViewAdapter
-import com.example.traffic_sign_detection.data.model.ClassificationResult
+import com.example.traffic_sign_detection.domain.data.model.ClassificationResult
 import com.example.traffic_sign_detection.util.ClassificationResultUtil
 import dagger.assisted.Assisted
 import dagger.assisted.AssistedFactory
