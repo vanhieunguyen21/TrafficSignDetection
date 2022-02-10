@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true"
-        tools:context=".MainActivity">
+        tools:context=".presentation.MainActivity">
 
         <androidx.camera.view.PreviewView
             android:id="@+id/viewFinder"
@@ -26,7 +26,8 @@
             android:src="@drawable/shutter_overlay"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="ContentDescription" />
 
         <ImageButton
             android:id="@+id/captureButton"
@@ -40,6 +41,19 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent" />
+
+        <ImageButton
+            android:id="@+id/galleryButton"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="@string/gallery"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ic_local_image_24"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="@id/captureButton"
+            app:layout_constraintBottom_toBottomOf="@id/captureButton"
+            app:layout_constraintRight_toLeftOf="@id/captureButton"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/gallery_recycler_view"

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.traffic_sign_detection.data.model.GalleryImage
 import com.example.traffic_sign_detection.data.model.GalleryItem
 import com.example.traffic_sign_detection.databinding.ItemGalleryImageBinding
+import com.example.traffic_sign_detection.presentation.adapter.GalleryRecyclerViewAdapter
 import com.squareup.picasso.Picasso
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,7 +28,7 @@ class GalleryImageViewBinder(
 
     override fun newViewHolder(parent: ViewGroup): GalleryImageViewHolder {
         val itemBinding = ItemGalleryImageBinding.inflate(LayoutInflater.from(parent.context))
-        return GalleryImageViewHolder(itemBinding)
+        return GalleryImageViewHolder(itemBinding, mDataBindAdapter)
     }
 
     override fun bindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -36,10 +37,16 @@ class GalleryImageViewBinder(
         mHolder.bind(image)
     }
 
-    class GalleryImageViewHolder(private val itemBinding: ItemGalleryImageBinding) :
-        RecyclerView.ViewHolder(itemBinding.root) {
+    class GalleryImageViewHolder(
+        private val itemBinding: ItemGalleryImageBinding,
+        private val mDataBindAdapter: DataBindAdapter<GalleryItem>
+    ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(image: GalleryImage) {
+            val galleryRecyclerViewAdapter = mDataBindAdapter as GalleryRecyclerViewAdapter
+            itemBinding.imageView.setOnClickListener {
+                galleryRecyclerViewAdapter.viewModel.setSelectedImage(image)
+            }
             val context = itemView.context
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 CoroutineScope(Dispatchers.IO).launch {

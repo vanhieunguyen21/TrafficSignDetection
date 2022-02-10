@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection
+package com.example.traffic_sign_detection.presentation
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -8,6 +8,7 @@ import android.view.WindowManager
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.example.traffic_sign_detection.R
 import com.example.traffic_sign_detection.presentation.ui.camera.CameraFragment
 import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -34,13 +35,11 @@ class MainActivity : AppCompatActivity() {
             WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
         )
 
-//        addFragment(CameraFragment(), "CameraFragment", false)
-        addFragment(GalleryFragment(), "GalleryFragment", false)
-//        val classifier = TFLiteClassifier(this)
-//        val image1 = BitmapFactory.decodeResource(resources, R.drawable.image0)
-//        classifier.predict(image1)
-//        val image2 = BitmapFactory.decodeResource(resources, R.drawable.image1)
-//        classifier.predict(image2)
+        if (savedInstanceState != null) {
+            // Do nothing, android handles this
+        } else {
+            addFragment(CameraFragment(), "CameraFragment", false)
+        }
 
         // Request all permission
         if (allPermissionGranted()) {

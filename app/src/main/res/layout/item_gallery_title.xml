@@ -6,9 +6,11 @@
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="3dp"
-        android:textColor="@color/black"
-        android:textSize="24sp"
-        android:textStyle="bold"
-        tools:text="Gallery Title" />
+        android:paddingStart="8dp"
+        android:paddingEnd="8dp"
+        android:paddingVertical="8dp"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        tools:text="Gallery Title"
+        tools:background="@color/black"/>
 </layout>

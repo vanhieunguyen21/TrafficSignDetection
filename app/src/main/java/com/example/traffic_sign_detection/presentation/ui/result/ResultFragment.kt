@@ -71,4 +71,9 @@ class ResultFragment : Fragment() {
         binding.resultRecyclerView.layoutManager = layoutManager
         binding.resultRecyclerView.adapter = viewModel.adapter
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy")
+    }
 }

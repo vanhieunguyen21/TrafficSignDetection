@@ -7,13 +7,15 @@ import com.example.traffic_sign_detection.presentation.dataBinder.DataBindAdapte
 import com.example.traffic_sign_detection.presentation.dataBinder.DataBinder
 import com.example.traffic_sign_detection.presentation.dataBinder.GalleryImageViewBinder
 import com.example.traffic_sign_detection.presentation.dataBinder.GalleryTitleViewBinder
+import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryViewModel
 import com.example.traffic_sign_detection.util.GalleryUtil
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class GalleryRecyclerViewAdapter :
-    DataBindAdapter<GalleryItem>() {
+class GalleryRecyclerViewAdapter(
+    val viewModel: GalleryViewModel
+) : DataBindAdapter<GalleryItem>() {
 
     companion object {
         const val TITLE_VIEW_TYPE = 0
@@ -24,15 +26,9 @@ class GalleryRecyclerViewAdapter :
     private val imageViewBinder = GalleryImageViewBinder(this)
     private val titleViewBinder = GalleryTitleViewBinder(this)
 
-    fun addGalleryItems(items: List<GalleryImage>) {
-        galleryItems.clear()
-        CoroutineScope(Dispatchers.Default).launch {
-            val itemsWithTitles = GalleryUtil.addGalleryTitlesToGalleryImageList(items)
-            galleryItems.addAll(itemsWithTitles)
-            launch(Dispatchers.Main) {
-                notifyItemRangeChanged(0, itemsWithTitles.size)
-            }
-        }
+    fun addGalleryItems(items: List<GalleryItem>) {
+        galleryItems.addAll(items)
+        notifyItemRangeChanged(0, items.size)
     }
 
     override fun getItemCount(): Int {

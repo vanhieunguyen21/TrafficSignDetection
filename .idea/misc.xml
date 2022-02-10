@@ -8,6 +8,7 @@
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/drawable/ic_more_vert_24.xml" value="0.2175925925925926" />
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/activity_main.xml" value="0.176" />
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/fragment_camera.xml" value="0.2" />
+        <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/fragment_crop_image.xml" value="0.16" />
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/fragment_gallery.xml" value="0.2128623188405797" />
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/fragment_pick_image.xml" value="0.21784420289855072" />
         <entry key="..\:/Projects/AndroidStudioProjects/TrafficSignDetection/app/src/main/res/layout/fragment_result.xml" value="0.2" />

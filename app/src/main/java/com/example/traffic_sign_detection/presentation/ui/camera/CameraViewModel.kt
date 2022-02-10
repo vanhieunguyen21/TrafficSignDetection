@@ -18,6 +18,9 @@ constructor(private val classifier: TFLiteClassifier) : ViewModel() {
 
     private val _predictionState = MutableLiveData(LoadDataState.NONE)
     val predictionState: LiveData<LoadDataState> get() = _predictionState
+    fun setPredictionState(state : LoadDataState){
+        _predictionState.value = state
+    }
 
     private var _result: ClassificationResult? = null
     val result: ClassificationResult? get() = _result

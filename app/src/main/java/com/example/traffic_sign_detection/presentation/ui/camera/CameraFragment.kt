@@ -14,11 +14,13 @@ import android.view.ViewGroup
 import androidx.camera.core.*
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
-import com.example.traffic_sign_detection.MainActivity
+import com.example.traffic_sign_detection.presentation.MainActivity
 import com.example.traffic_sign_detection.R
 import com.example.traffic_sign_detection.databinding.FragmentCameraBinding
 import com.example.traffic_sign_detection.enumeration.LoadDataState
+import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryFragment
 import com.example.traffic_sign_detection.presentation.ui.result.ResultFragment
 import dagger.hilt.android.AndroidEntryPoint
 import java.io.File
@@ -45,6 +47,7 @@ class CameraFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+        Log.d(TAG, "onCreateView")
         binding = FragmentCameraBinding.inflate(inflater)
         return binding.root
     }
@@ -52,18 +55,67 @@ class CameraFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Set up buttons
+        binding.galleryButton.setOnClickListener {
+            openGalleryFragment()
+            setFragmentResultListener("selectedImage") { _, bundle ->
+                Log.d(TAG, "FragmentResultListener $bundle")
+                val bmp = bundle.getParcelable("croppedImage") as Bitmap?
+                if (bmp != null) {
+                    viewModel.predict(bmp)
+                }
+            }
+        }
+        binding.closeButton.setOnClickListener { requireActivity().finish() }
+
+        // Set up camera
         outputDirectory = getOutputDirectory()
         binding.captureButton.setOnClickListener { capture() }
         cameraExecutor = Executors.newSingleThreadExecutor()
         binding.viewFinder.post {
             startCamera()
         }
+
+        // Observe prediction result
+        viewModel.predictionState.observe(viewLifecycleOwner) { state ->
+            when (state) {
+                LoadDataState.NONE -> {
+                    // Do nothing
+                }
+                LoadDataState.LOADING -> {
+                    // TODO: show loading
+                }
+                LoadDataState.ERROR -> {
+                    // TODO: show error
+                }
+                LoadDataState.LOADED -> {
+                    // TODO: hide loading
+                    // Open result fragment
+                    val activity: MainActivity = activity as MainActivity
+                    val resultFragment = ResultFragment()
+                    val args = Bundle()
+                    args.putSerializable("result", viewModel.result)
+                    resultFragment.arguments = args
+                    activity.addFragment(resultFragment, "ResultFragment", true)
+                    // Set value to NONE to avoid reload on configuration change
+                    viewModel.setPredictionState(LoadDataState.NONE)
+                }
+                else -> {
+                    // Do nothing
+                }
+            }
+        }
+    }
+
+    private fun openGalleryFragment() {
+        val activity: MainActivity = requireActivity() as MainActivity
+        activity.addFragment(GalleryFragment(), "GalleryFragment", true)
     }
 
     @SuppressLint("UnsafeOptInUsageError")
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(requireContext())
-        cameraProviderFuture.addListener(Runnable {
+        cameraProviderFuture.addListener({
             // Used to bind the lifecycle of cameras to the lifecycle owner
             val cameraProvider: ProcessCameraProvider = cameraProviderFuture.get()
 
@@ -113,7 +165,7 @@ class CameraFragment : Fragment() {
         )
 
         // Create output options object which contains file + metadata
-        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
+//        val outputOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
         // Set up image capture listener, which is triggered after photo has been taken
         imageCapture.takePicture(
@@ -141,42 +193,15 @@ class CameraFragment : Fragment() {
                     // Rotate image 90 degree (original image is horizontal)
                     val matrix = Matrix().apply { postRotate(90f) }
                     bmp = Bitmap.createBitmap(bmp, 0, 0, bmp.width, bmp.height, matrix, true)
+                    imageProxy.close()
+
+                    // Save image
+                    val fos = FileOutputStream(photoFile)
+                    bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos)
+                    fos.flush().also { fos.close() }
 
                     // Start predicting
                     viewModel.predict(bmp)
-
-                    viewModel.predictionState.observe(viewLifecycleOwner, { state ->
-                        when (state) {
-                            LoadDataState.LOADING -> {
-                                // TODO: show loading
-                            }
-                            LoadDataState.ERROR -> {
-                                // TODO: show error
-                            }
-                            LoadDataState.LOADED -> {
-                                // Detach observer
-                                viewModel.predictionState.removeObservers(viewLifecycleOwner)
-                                // TODO: hide loading
-
-                                // Save image
-                                val fos = FileOutputStream(photoFile)
-                                bmp.compress(Bitmap.CompressFormat.JPEG, 100, fos)
-                                fos.flush().also { fos.close() }
-                                imageProxy.close()
-                                // Open result fragment
-                                val activity: MainActivity = activity as MainActivity
-                                val resultFragment = ResultFragment()
-                                val args = Bundle()
-                                args.putSerializable("result", viewModel.result)
-                                resultFragment.arguments = args
-                                activity.addFragment(resultFragment, "ResultFragment", true)
-                            }
-                            else -> {
-                                // Do nothing
-                            }
-                        }
-                    })
-
                 }
 
                 override fun onError(e: ImageCaptureException) {
