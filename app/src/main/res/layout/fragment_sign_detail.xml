@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout>
 
+    <data>
+        <variable
+            name="signMetadata"
+            type="com.example.traffic_sign_detection.domain.data.model.SignMetadata" />
+    </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
@@ -15,6 +21,7 @@
             android:layout_height="0dp"
             android:layout_marginTop="50dp"
             android:contentDescription="@string/image"
+            imageResource="@{signMetadata.drawableResourceId}"
             app:layout_constraintDimensionRatio="1"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -30,6 +37,7 @@
             android:textColor="@color/black"
             android:textSize="20sp"
             android:textStyle="bold"
+            android:text="@{signMetadata.name}"
             app:layout_constraintLeft_toLeftOf="@id/imageView"
             app:layout_constraintRight_toRightOf="@id/imageView"
             app:layout_constraintTop_toBottomOf="@id/imageView"
@@ -55,6 +63,7 @@
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="20dp"
+            android:text="@{signMetadata.description}"
             android:textColor="@color/black"
             android:textSize="20sp"
             app:layout_constraintTop_toBottomOf="@id/descriptionLabelTextView"

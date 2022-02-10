@@ -60,13 +60,10 @@ class SignDetailFragment : Fragment() {
         }
         viewModel = tmpViewModel
 
-        // Set UI data
-        val imageResourceId =
-            ContextUtil.getDrawableResourceId(requireContext(), viewModel.signMetadata.drawable)
-        Picasso.get()
-            .load(imageResourceId)
-            .into(binding.imageView)
-        binding.signNameTextView.text = viewModel.signMetadata.name
-        binding.descriptionTextView.text = viewModel.signMetadata.description
+        // Set button onclick
+        binding.backButton.setOnClickListener { parentFragmentManager.popBackStack() }
+
+        // Bind data
+        binding.signMetadata = viewModel.signMetadata
     }
 }

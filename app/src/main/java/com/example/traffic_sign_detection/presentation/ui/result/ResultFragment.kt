@@ -60,8 +60,11 @@ class ResultFragment : Fragment() {
         }
         viewModel = tmpViewModel
 
-        // Set image
-        binding.imageView.setImageBitmap(result.bmp)
+        // Set button onclick
+        binding.backButton.setOnClickListener { parentFragmentManager.popBackStack() }
+
+        // Bind data
+        binding.result = viewModel.result
 
         // Set up RecyclerView
         val layoutManager = FlexboxLayoutManager(context)

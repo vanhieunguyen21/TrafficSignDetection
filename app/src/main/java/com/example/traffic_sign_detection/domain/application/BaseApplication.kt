@@ -9,6 +9,7 @@ import androidx.lifecycle.MutableLiveData
 import com.example.traffic_sign_detection.domain.data.repository.MediaStoreImageRepository
 import com.example.traffic_sign_detection.domain.data.repository.SignMetadataRepository
 import com.example.traffic_sign_detection.domain.enumeration.LoadDataState
+import com.example.traffic_sign_detection.util.ContextUtil
 import dagger.hilt.android.HiltAndroidApp
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -42,6 +43,9 @@ class BaseApplication : Application(), CameraXConfig.Provider {
             try {
                 val metaDataList = signSignMetadataRepository.getAllSignMetadata()
                 metaDataList.iterator().forEach {
+                    val imageResourceId =
+                        ContextUtil.getDrawableResourceId(this@BaseApplication, it.drawable)
+                    it.drawableResourceId = imageResourceId
                     GlobalData.metaDataMap[it.id] = it
                 }
                 Log.d(TAG, "Load meta data completed")

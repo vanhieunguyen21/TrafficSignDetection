@@ -50,7 +50,8 @@ class TFLiteClassifier(private val context: Context) {
                     metadata.label,
                     metadata.name,
                     metadata.drawable,
-                    metadata.description
+                    metadata.description,
+                    metadata.drawableResourceId
                 )
             )
         }

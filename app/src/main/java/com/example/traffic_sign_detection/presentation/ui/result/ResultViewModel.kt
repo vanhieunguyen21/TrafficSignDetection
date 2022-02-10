@@ -13,7 +13,7 @@ import dagger.assisted.AssistedFactory
 import dagger.assisted.AssistedInject
 
 class ResultViewModel @AssistedInject constructor(
-    @Assisted private val result: ClassificationResult
+    @Assisted val result: ClassificationResult
 ) : ViewModel() {
 
     val adapter = ResultRecyclerViewAdapter(

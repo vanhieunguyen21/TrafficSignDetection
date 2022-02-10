@@ -3,6 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+        <variable
+            name="prediction"
+            type="com.example.traffic_sign_detection.domain.data.model.Prediction" />
+    </data>
+
     <com.google.android.material.card.MaterialCardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -20,6 +26,7 @@
                 android:layout_height="0dp"
                 android:contentDescription="@string/sign_image"
                 android:scaleType="fitCenter"
+                imageResource="@{prediction.drawableResourceId}"
                 app:layout_constraintDimensionRatio="1"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -30,6 +37,7 @@
                 android:id="@+id/accuracy"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{String.format(`%.2f%%`, prediction.accuracy * 100)}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"

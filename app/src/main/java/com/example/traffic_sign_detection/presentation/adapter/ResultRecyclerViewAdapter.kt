@@ -39,21 +39,13 @@ class ResultRecyclerViewAdapter(
     ) : RecyclerView.ViewHolder(itemBinding.root) {
 
         fun bind(prediction: Prediction) {
+            // Bind data
+            itemBinding.prediction = prediction
+
             // Set on click
             itemBinding.root.setOnClickListener {
                 adapter.viewModel.setSelectedSign(prediction)
             }
-
-            // Set accuracy
-            itemBinding.accuracy.text = String.format("%.2f%%", prediction.accuracy * 100)
-
-            // Set image
-            val imageResourceId =
-                ContextUtil.getDrawableResourceId(itemBinding.root.context, prediction.drawable)
-            Picasso.get()
-                .load(imageResourceId)
-                .resize(200, 200)
-                .into(itemBinding.imageView)
         }
     }
 }

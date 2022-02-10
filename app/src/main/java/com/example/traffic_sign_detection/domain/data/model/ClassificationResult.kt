@@ -15,4 +15,16 @@ class Prediction(
     name: String,
     drawable: String,
     description: String?
-) : SignMetadata(id, label, name, drawable, description)
+) : SignMetadata(id, label, name, drawable, description) {
+    constructor(
+        accuracy: Float,
+        id: Int,
+        label: String,
+        name: String,
+        drawable: String,
+        description: String?,
+        drawableResourceId: Int
+    ) : this(accuracy, id, label, name, drawable, description) {
+        this.drawableResourceId = drawableResourceId
+    }
+}
