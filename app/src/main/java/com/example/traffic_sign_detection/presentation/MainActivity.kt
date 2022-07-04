@@ -18,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "MainActivity"
+        private const val DEBUG = true
         private const val REQUEST_CODE_PERMISSION = 1
         private val REQUIRED_PERMISSIONS = arrayOf(
             Manifest.permission.CAMERA,
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Log.d(TAG, "onCreate")
+        if (DEBUG) Log.d(TAG, "onCreate")
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    fun requestRequiredPermissions(){
+    private fun requestRequiredPermissions(){
         requestPermissions(
             REQUIRED_PERMISSIONS,
             REQUEST_CODE_PERMISSION
@@ -76,7 +77,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun addFragment(frag: Fragment, tag: String?, addToBackstack: Boolean) {
-        Log.d(TAG, "addFragment: $tag")
+        if (DEBUG) Log.d(TAG, "addFragment: $tag")
         val transaction = supportFragmentManager.beginTransaction()
             .add(R.id.container, frag, tag)
         if (addToBackstack) transaction.addToBackStack(null)
