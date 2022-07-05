@@ -7,7 +7,7 @@ import com.example.traffic_sign_detection.presentation.recyclerViewBinder.DataBi
 import com.example.traffic_sign_detection.presentation.recyclerViewBinder.DataBinder
 import com.example.traffic_sign_detection.presentation.recyclerViewBinder.GalleryImageViewBinder
 import com.example.traffic_sign_detection.presentation.recyclerViewBinder.GalleryTitleViewBinder
-import com.example.traffic_sign_detection.presentation.ui.gallery.GalleryViewModel
+import com.example.traffic_sign_detection.presentation.viewModel.GalleryViewModel
 
 class GalleryRecyclerViewAdapter(
     val viewModel: GalleryViewModel

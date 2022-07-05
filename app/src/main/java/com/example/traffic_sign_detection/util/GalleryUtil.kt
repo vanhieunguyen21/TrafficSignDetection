@@ -1,5 +1,11 @@
 package com.example.traffic_sign_detection.util
 
+import android.content.ContentResolver
+import android.graphics.Bitmap
+import android.graphics.ImageDecoder
+import android.net.Uri
+import android.os.Build
+import android.provider.MediaStore
 import com.example.traffic_sign_detection.domain.data.model.GalleryImage
 import com.example.traffic_sign_detection.domain.data.model.GalleryItem
 import com.example.traffic_sign_detection.domain.data.model.GalleryTitle
@@ -46,5 +52,17 @@ object GalleryUtil {
         }
 
         return result.toList()
+    }
+
+    fun getBitmap(contentResolver: ContentResolver, fileUri: Uri?): Bitmap? {
+        return try {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                ImageDecoder.decodeBitmap(ImageDecoder.createSource(contentResolver, fileUri!!))
+            } else {
+                MediaStore.Images.Media.getBitmap(contentResolver, fileUri)
+            }
+        } catch (e: Exception){
+            null
+        }
     }
 }

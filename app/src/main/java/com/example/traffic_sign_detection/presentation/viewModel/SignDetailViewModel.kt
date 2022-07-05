@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.ui.detail
+package com.example.traffic_sign_detection.presentation.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
