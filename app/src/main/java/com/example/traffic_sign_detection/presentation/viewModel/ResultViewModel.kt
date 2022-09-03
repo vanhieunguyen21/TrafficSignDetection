@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.ui.result
+package com.example.traffic_sign_detection.presentation.viewModel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

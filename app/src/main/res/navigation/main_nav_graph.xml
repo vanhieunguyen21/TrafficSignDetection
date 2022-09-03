@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/cameraFragment">
+
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.example.traffic_sign_detection.presentation.ui.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_cameraFragment_to_cropImageFragment"
+            app:destination="@id/cropImageFragment">
+            <argument
+                android:name="image"
+                app:argType="string"
+                android:defaultValue="camera"/>
+        </action>
+        <action
+            android:id="@+id/action_cameraFragment_to_galleryFragment"
+            app:destination="@id/galleryFragment" />
+        <action
+            android:id="@+id/action_cameraFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cropImageFragment"
+        android:name="com.example.traffic_sign_detection.presentation.ui.CropImageFragment"
+        android:label="CropImageFragment"
+        tools:layout="@layout/fragment_crop_image" >
+        <action
+            android:id="@+id/action_cropImageFragment_to_resultFragment"
+            app:destination="@id/resultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/galleryFragment"
+        android:name="com.example.traffic_sign_detection.presentation.ui.GalleryFragment"
+        android:label="GalleryFragment"
+        tools:layout="@layout/fragment_gallery">
+        <action
+            android:id="@+id/action_galleryFragment_to_cropImageFragment"
+            app:destination="@id/cropImageFragment">
+            <argument
+                android:name="image"
+                android:defaultValue="gallery"
+                app:argType="string"/>
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.example.traffic_sign_detection.presentation.ui.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result">
+        <action
+            android:id="@+id/action_resultFragment_to_signDetailFragment"
+            app:destination="@id/signDetailFragment">
+            <argument
+                android:name="signMetadata"
+                app:argType="com.example.traffic_sign_detection.domain.data.model.SignMetadata" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/signDetailFragment"
+        android:name="com.example.traffic_sign_detection.presentation.ui.SignDetailFragment"
+        android:label="SignDetailFragment"
+        tools:layout="@layout/fragment_sign_detail" />
+</navigation>

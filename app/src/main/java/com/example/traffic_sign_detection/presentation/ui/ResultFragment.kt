@@ -1,4 +1,4 @@
-package com.example.traffic_sign_detection.presentation.ui.result
+package com.example.traffic_sign_detection.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
@@ -6,51 +6,39 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
-import com.example.traffic_sign_detection.domain.data.model.ClassificationResult
+import androidx.navigation.fragment.findNavController
+import com.example.traffic_sign_detection.R
 import com.example.traffic_sign_detection.databinding.FragmentResultBinding
-import com.example.traffic_sign_detection.presentation.MainActivity
-import com.example.traffic_sign_detection.presentation.ui.detail.SignDetailFragment
+import com.example.traffic_sign_detection.presentation.base.BaseFragment
+import com.example.traffic_sign_detection.presentation.viewModel.MainViewModel
+import com.example.traffic_sign_detection.presentation.viewModel.ResultViewModel
 import com.google.android.flexbox.*
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
 @AndroidEntryPoint
-class ResultFragment : Fragment() {
+class ResultFragment : BaseFragment<FragmentResultBinding>() {
     companion object {
         private const val TAG = "ResultFragment"
     }
 
-    private lateinit var binding: FragmentResultBinding
+    override fun getLayoutRes(): Int = R.layout.fragment_result
     private lateinit var viewModel: ResultViewModel
+    private val activityViewModel: MainViewModel by activityViewModels()
 
     @Inject
     lateinit var resultViewModelFactory: ResultViewModel.ResultViewModelFactory
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentResultBinding.inflate(layoutInflater)
-        return binding.root
-    }
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d(TAG, "onViewCreated")
-        // Get results from arguments
-        val args: Bundle? = arguments
-        if (args == null) {
-            Log.e(TAG, "arguments null")
-            parentFragmentManager.popBackStack()
-            return
-        }
-        val result: ClassificationResult? =
-            args.getSerializable("result") as ClassificationResult?
+
+        val result = activityViewModel.result
         if (result == null) {
-            Log.e(TAG, "result null")
-            parentFragmentManager.popBackStack()
+            Log.e(TAG, "onViewCreated: result is null")
+            findNavController().popBackStack()
             return
         }
 
@@ -61,7 +49,7 @@ class ResultFragment : Fragment() {
         viewModel = tmpViewModel
 
         // Set button onclick
-        binding.backButton.setOnClickListener { parentFragmentManager.popBackStack() }
+        binding.backButton.setOnClickListener { findNavController().popBackStack() }
 
         // Bind data
         binding.result = viewModel.result
@@ -82,14 +70,12 @@ class ResultFragment : Fragment() {
             if (signMetadata == null) {
                 return@observe
             }
-            val mainActivity: MainActivity = requireActivity() as MainActivity
-            val signDetailFragment = SignDetailFragment()
-            val sArgs = Bundle()
-            sArgs.putSerializable("signMetadata", signMetadata)
-            signDetailFragment.arguments = sArgs
-            mainActivity.addFragment(signDetailFragment, "SignDetailFragment", true)
             // Remove value to prevent recall on fragment recreation
             viewModel.setSelectedSign(null)
+            // Initiate navigation action with argument
+            val action = ResultFragmentDirections.actionResultFragmentToSignDetailFragment(signMetadata)
+            // Navigate to detail fragment
+            findNavController().navigate(action)
         }
     }
 

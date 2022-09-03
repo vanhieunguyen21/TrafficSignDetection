@@ -13,4 +13,6 @@
     <string name="gallery">Gallery</string>
     <string name="crop_image">Crop Image</string>
     <string name="finish">Finish</string>
+    <string name="close">Close</string>
+    <string name="menu">Menu</string>
 </resources>

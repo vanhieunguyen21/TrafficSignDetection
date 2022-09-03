@@ -5,9 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.traffic_sign_detection.domain.data.model.Prediction
 import com.example.traffic_sign_detection.databinding.ItemSignResultViewHolderBinding
-import com.example.traffic_sign_detection.presentation.ui.result.ResultViewModel
-import com.example.traffic_sign_detection.util.ContextUtil
-import com.squareup.picasso.Picasso
+import com.example.traffic_sign_detection.presentation.viewModel.ResultViewModel
 
 class ResultRecyclerViewAdapter(
     private val predictions: List<Prediction>,

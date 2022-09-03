@@ -6,13 +6,16 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        def gradle_version = '7.1.0'
+        def gradle_version = '7.2.1'
         classpath "com.android.tools.build:gradle:$gradle_version"
 
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 
-        def hilt_version = "2.38.1"
+        def hilt_version = '2.40.1'
         classpath "com.google.dagger:hilt-android-gradle-plugin:$hilt_version"
+
+        def nav_version = "2.5.0"
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$nav_version"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
